@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 
 import AllRestaurant from '../AllRestaurant'
 import Header from '../Header'
-import FooterSection from '../FooterSection'
+import Footer from '../Footer'
 import Offers from '../Offers'
 
 import './index.css'
@@ -21,7 +21,7 @@ const Home = () => {
       <div className="main">
         <AllRestaurant />
       </div>
-      <FooterSection />
+      <Footer />
     </>
   )
 }

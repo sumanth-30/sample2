@@ -14,6 +14,10 @@ class LoginForm extends Component {
     this.setState({username: event.target.value})
   }
 
+  onSubmitFailure = errorMsg => {
+    this.setState({showSubmitError: true, errorMsg})
+  }
+
   onSubmitSuccess = jwtToken => {
     const {history} = this.props
 
@@ -40,11 +44,6 @@ class LoginForm extends Component {
     } else {
       this.onSubmitFailure(data.error_msg)
     }
-  }
-
-  onSubmitFailure = errorMsg => {
-    console.log(errorMsg)
-    this.setState({showSubmitError: true, errorMsg})
   }
 
   renderUsernameField = () => {
@@ -87,7 +86,7 @@ class LoginForm extends Component {
     const {showSubmitError, errorMsg} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
-      return <Redirect to="/login" />
+      return <Redirect to="/" />
     }
     return (
       <div className="sign-in-container">
@@ -98,7 +97,7 @@ class LoginForm extends Component {
               <div className="mobile-signIn-image-container">
                 <img
                   src="https://res.cloudinary.com/dppqkea7f/image/upload/v1625810735/mobile-login_1_ragewe.png"
-                  alt="signIn-img"
+                  alt="website login"
                   className="mobile-signIn-image"
                 />
               </div>
@@ -107,19 +106,16 @@ class LoginForm extends Component {
               <div className="desktop-sigIn-icon-container">
                 <img
                   src="https://res.cloudinary.com/dppqkea7f/image/upload/v1625742512/Frame_274_zlrzwk.svg"
-                  alt="icon"
+                  alt="website logo"
                 />
-                <img
-                  src="https://res.cloudinary.com/dppqkea7f/image/upload/v1625742726/Features_sy5c0d.svg"
-                  alt="icon-text"
-                />
-                <h1 className="signIn-heading">Sign In</h1>
+                <h1 className="app-heading">Tasty Kitchens</h1>
+                <h1 className="signIn-heading">Login</h1>
               </div>
             </div>
             <div className="input-container">{this.renderUsernameField()}</div>
             <div className="input-container">{this.renderPasswordField()}</div>
             <button type="submit" className="signIn-button">
-              Sign in
+              Login
             </button>
             {showSubmitError && <p className="error-message">*{errorMsg}</p>}
           </form>
@@ -127,7 +123,7 @@ class LoginForm extends Component {
         <div className="desktop-signIn-image-container">
           <img
             src="https://res.cloudinary.com/dppqkea7f/image/upload/v1625809830/login-image_duk4fw.png"
-            alt="img"
+            alt="website login"
             className="desktop-signIn-image"
           />
         </div>

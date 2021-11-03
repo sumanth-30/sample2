@@ -5,7 +5,7 @@ import {BsPlus} from 'react-icons/bs'
 import {FaRupeeSign, FaCheckCircle} from 'react-icons/fa'
 import './index.css'
 import Header from '../Header'
-import FooterSection from '../FooterSection'
+import Footer from '../Footer'
 import CartEmpty from '../CartEmpty'
 
 class Cart extends Component {
@@ -45,7 +45,7 @@ class Cart extends Component {
     const sum = costList.reduce((a, b) => a + b, 0)
     // console.log(sum)
     return (
-      <div className="all-cart-items-container">
+      <div testid="cartItem" className="all-cart-items-container">
         <Header />
         <div className="items-cart-container">
           <div className="mobile-ordered-food-items-container">
@@ -58,11 +58,15 @@ class Cart extends Component {
                   <h1 className="dish-name">{item.name}</h1>
                   <div className="dish-count-container">
                     <HiOutlineMinusSm
+                      testid="decrement-quantity"
                       className="dish-minus-icon"
                       onClick={this.clickMinus}
                     />
-                    <p className="dish-count">{item.activeCount}</p>
+                    <p testid="item-quantity" className="dish-count">
+                      {item.activeCount}
+                    </p>
                     <BsPlus
+                      testid="increment-quantity"
                       className="dish-plus-icon"
                       onClick={this.clickPlus}
                     />
@@ -79,7 +83,10 @@ class Cart extends Component {
                 <h1 className="final-price-heading">Order Total:</h1>
                 <div className="total-price-container">
                   <FaRupeeSign className="dish-rupees-icon" />
-                  <p className="final-price">{`${sum}.00`}</p>
+                  <p
+                    testid="total-price"
+                    className="final-price"
+                  >{`${sum}.00`}</p>
                 </div>
               </div>
               <div className="order-placed-btn-container">
@@ -141,7 +148,10 @@ class Cart extends Component {
                 <h1 className="final-price-heading">Order Total:</h1>
                 <div className="total-price-container">
                   <FaRupeeSign className="dish-rupees-icon" />
-                  <p className="final-price">{`${sum}.00`}</p>
+                  <p
+                    testid="total-price"
+                    className="final-price"
+                  >{`${sum}.00`}</p>
                 </div>
               </div>
               <div className="order-placed-btn-container">
@@ -156,7 +166,7 @@ class Cart extends Component {
             </div>
           </div>
         </div>
-        <FooterSection />
+        <Footer />
       </div>
     )
   }
@@ -173,7 +183,7 @@ class Cart extends Component {
           </p>
           <Link to="/" style={{textDecoration: 'none'}}>
             <button type="button" className="back-to-home-btn">
-              Go To Home Page
+              Go To Home
             </button>
           </Link>
         </div>

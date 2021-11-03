@@ -18,7 +18,7 @@ class Header extends Component {
       <div className="nav-bar-icon-container">
         <img
           src="https://res.cloudinary.com/dppqkea7f/image/upload/v1625742512/Frame_274_zlrzwk.svg"
-          alt="nav-Icon"
+          alt="website logo"
           className="nav-bar-icon-img"
         />
         <h1 className="nav-bar-icon-heading">Tasty Kitchen</h1>

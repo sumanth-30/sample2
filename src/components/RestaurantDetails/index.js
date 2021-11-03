@@ -7,7 +7,7 @@ import NotFoundRoute from '../NotFoundRoute'
 import './index.css'
 import FoodItems from '../FoodItems'
 import Header from '../Header'
-import FooterSection from '../FooterSection'
+import Footer from '../Footer'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -112,7 +112,7 @@ class RestaurantDetails extends Component {
             <FoodItems foodItems={eachItem} key={eachItem.id} />
           ))}
         </div>
-        <FooterSection />
+        <Footer />
       </>
     )
   }
