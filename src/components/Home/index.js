@@ -1,10 +1,10 @@
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 
-import AllRestaurant from '../AllRestaurant'
 import Header from '../Header'
 import Footer from '../Footer'
 import Offers from '../Offers'
+import AllRestaurant from '../AllRestaurant'
 
 import './index.css'
 

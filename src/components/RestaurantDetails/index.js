@@ -79,7 +79,7 @@ class RestaurantDetails extends Component {
         <div className="restaurant-Image-text-details-container">
           <img
             src={restaurantData.image_url}
-            alt={`img${restaurantData.id}`}
+            alt="restaurant"
             className="separate-restaurant-image"
           />
 
@@ -118,7 +118,7 @@ class RestaurantDetails extends Component {
   }
 
   renderLoader = () => (
-    <div className="loader-container">
+    <div testid="restaurant-details-loader" className="loader-container">
       <Loader type="Oval" color="gold" height="40" width="50" />
     </div>
   )

@@ -1,17 +1,18 @@
-import {Link} from 'react-router-dom'
-import './index.css'
+import {Link, withRouter} from 'react-router-dom'
 import Header from '../Header'
+
+import './index.css'
 
 const NotFoundRoute = () => (
   <>
     <Header />
     <div className="not-found-container">
       <img
-        src="https://res.cloudinary.com/dppqkea7f/image/upload/v1625830262/NotFound_kpncbm.png"
+        src="https://res.cloudinary.com/dihboy1cn/image/upload/v1634883847/not_found.jpg"
         alt="not found"
         className="not-found-img"
       />
-      <h1 className="page-not-found-heading">PAGE NOT FOUND</h1>
+      <h1 className="page-not-found-heading">Page Not Found</h1>
       <p className="page-not-found-description">
         we are sorry, the page you requested could not be found
       </p>
@@ -24,4 +25,4 @@ const NotFoundRoute = () => (
   </>
 )
 
-export default NotFoundRoute
+export default withRouter(NotFoundRoute)

@@ -1,93 +1,90 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
-
+import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import {FaBars, FaTimesCircle} from 'react-icons/fa'
 
 import './index.css'
 
-class Header extends Component {
-  state = {isClicked: false}
+const logo =
+  'https://res.cloudinary.com/dihboy1cn/image/upload/v1635241468/Frame_274_lu6taz.svg'
+const logout =
+  'https://res.cloudinary.com/dihboy1cn/image/upload/v1633586368/hamburger_menu.jpg'
 
-  onClickLogout = () => {
-    Cookies.remove('jwt_token')
+class Header extends Component {
+  state = {isTrue: false}
+
+  getTheNames = () => {
+    this.setState(prevState => ({isTrue: !prevState.isTrue}))
   }
 
-  renderIconContainer = () => (
-    <Link to="/" className="nav-bar-icon-link" style={{textDecoration: 'none'}}>
-      <div className="nav-bar-icon-container">
-        <img
-          src="https://res.cloudinary.com/dppqkea7f/image/upload/v1625742512/Frame_274_zlrzwk.svg"
-          alt="website logo"
-          className="nav-bar-icon-img"
-        />
-        <h1 className="nav-bar-icon-heading">Tasty Kitchen</h1>
-      </div>
-    </Link>
-  )
-
-  renderNavList = () => (
-    <ul className="list-container">
-      <Link to="/" className="nav-link">
-        <li>Home</li>
-      </Link>
-      <Link to="/cart" className="nav-link">
-        <li>Cart</li>
-      </Link>
-    </ul>
-  )
+  onClickLogout = () => {
+    const {history} = this.props
+    Cookies.remove('jwt_token')
+    history.replace('/login')
+  }
 
   render() {
-    const {isClicked} = this.state
+    const {isTrue} = this.state
     return (
       <>
-        <nav className="nav-bar">
-          <div className="desktop-nav-bar-container">
-            {this.renderIconContainer()}
-            <div className="nav-bar-link-items-container">
-              {this.renderNavList()}
-              <Link to="/login" style={{textDecoration: 'none'}}>
-                <button
-                  className="desktop-logout-btn"
-                  type="button"
-                  onClick={this.onClickLogout}
-                >
-                  Logout
-                </button>
-              </Link>
-            </div>
-          </div>
-          <div className="mobile-nav-bar-container">
-            {this.renderIconContainer()}
-            <button
-              type="button"
-              className="menu-btn"
-              onClick={() => {
-                this.setState({isClicked: !isClicked})
-              }}
-            >
-              <FaBars className="FaBars " />
-            </button>
-          </div>
-        </nav>
-        {isClicked && (
-          <div className="mobile-menu-list">
-            {this.renderNavList()}
-            <Link to="/login" className="nav-link-button">
+        <nav className="nav-header">
+          <div className="nav-content">
+            <Link to="/" className="nav-link">
+              <div className="home-and-logo">
+                <img src={logo} className="logo" alt="home" />
+                <h1 className="head">Tasty Kitchens</h1>
+              </div>
+            </Link>
+            <ul className="home-cart-logout">
+              <li className="home">
+                <Link to="/" className="nav-link">
+                  Home
+                </Link>
+              </li>
+              <li className="home">
+                <Link to="/cart" className="nav-link-two">
+                  Cart
+                </Link>
+              </li>
               <button
-                className="mobile-logout-btn"
                 type="button"
                 onClick={this.onClickLogout}
+                className="logout"
               >
                 Logout
               </button>
-            </Link>
-            <FaTimesCircle
-              className="mobile-toggle-icon"
-              onClick={() => {
-                this.setState({isClicked: !isClicked})
-              }}
-            />
+            </ul>
+            <button
+              type="button"
+              className="logout_two"
+              onClick={this.getTheNames}
+            >
+              <img src={logout} alt="menu" />
+            </button>
+          </div>
+        </nav>
+        {isTrue && (
+          <div className="mobile-home-cart">
+            <div className="mobile-cart-nav">
+              <div className="bar">
+                <div className="bar-one">
+                  <Link to="/" className="nav-home">
+                    <h1 className="home-home-bar">Home</h1>
+                  </Link>
+                  <Link to="/cart" className="nav-home">
+                    <h1 className="home-cart-bar">Cart</h1>
+                  </Link>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    className="home-close"
+                    onClick={this.onClickLogout}
+                  >
+                    LogOut
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </>
@@ -95,4 +92,4 @@ class Header extends Component {
   }
 }
 
-export default Header
+export default withRouter(Header)

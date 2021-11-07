@@ -19,15 +19,15 @@ class FoodItems extends Component {
   }
 
   clickMinus = () => {
-    const {activeCount} = this.state
+    const {activeCount, isClicked} = this.state
 
     // console.log(foodItems.id)
     if (activeCount > 1) {
       this.setState(prevState => ({
         activeCount: prevState.activeCount - 1,
       }))
-    } else if (activeCount < 1) {
-      this.setState({activeCount: 1})
+    } else if (activeCount <= 1) {
+      this.setState({activeCount: 1, isClicked: !isClicked})
     }
     // console.log(activeCount)
   }
@@ -41,13 +41,14 @@ class FoodItems extends Component {
   }
 
   render() {
-    const {foodItems} = this.props
+    // eslint-disable-next-line
+    const {foodItems, key} = this.props
     const {isClicked, activeCount, itemId} = this.state
     console.log(itemId)
 
     return (
       <>
-        <div className="each-food-item-container">
+        <div testid="foodItem" className="each-food-item-container">
           <div className="each-item-image">
             <img
               src={foodItems.imageUrl}
@@ -67,14 +68,16 @@ class FoodItems extends Component {
             </div>
             {isClicked ? (
               <div className="each-item-counter-container" id={foodItems.id}>
-                <div className="minus-icon-container">
+                <div testid="decrement-count" className="minus-icon-container">
                   <HiOutlineMinusSm
                     className="minus-icon"
                     onClick={this.clickMinus}
                   />
                 </div>
-                <p className="count-value">{activeCount}</p>
-                <div className="plus-icon-container">
+                <p testid="active-count" className="count-value">
+                  {activeCount}
+                </p>
+                <div testid="increment-count" className="plus-icon-container">
                   <BsPlus className="plus-icon" onClick={this.clickPlus} />
                 </div>
               </div>

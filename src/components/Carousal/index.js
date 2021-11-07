@@ -22,7 +22,7 @@ class AutoPlay extends Component {
       <Slider {...settings}>
         {images.map(each => (
           <div className="container-carousal" key={each.imageUrl}>
-            <img className="image" src={each.imageUrl} alt="img" />
+            <img className="image" src={each.imageUrl} alt="offer" />
           </div>
         ))}
       </Slider>

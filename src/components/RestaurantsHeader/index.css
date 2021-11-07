@@ -1,76 +1,63 @@
-.Restaurants-header {
+.main-container {
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.paragraph-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-
-  padding-right: 30px;
-}
-
-.Restaurants-list-heading {
-  color: #475569;
-  font-family: 'Roboto';
-  font-size: 18px;
-  font-weight: 500;
-}
-.Restaurants-list-description {
+  margin-top: 1px;
   font-family: DM Sans;
   font-style: normal;
   font-weight: 500;
-  font-size: 10px;
   color: #64748b;
 }
-@media screen and (min-width: 768px) {
-  .Restaurants-list-heading {
-    font-size: 32px;
-  }
-  .Restaurants-header {
-    margin-top: 32px;
-  }
-  .Restaurants-list-description {
-    font-size: 22px;
-  }
-}
 
-.sort-by-container {
+.main-head {
+  margin-bottom: 0px;
+  color: #183b56;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 48px;
+}
+.name-and-filter {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-right: 10px;
 }
-
-.sort-by-icon {
-  width: 24px;
-  height: 24px;
-  color: #475569;
-  margin-top: 14px;
-  margin-right: 0px;
+.small-para {
+  margin: 10px;
 }
-
-.sort-by-select {
-  color: #475569;
-  background-color: #ffffff;
-  font-family: 'Roboto';
-  font-size: 16px;
-  font-weight: 500;
-  border: none;
-  padding: 12px;
-  outline: none;
-  cursor: pointer;
-  margin-top: 12px;
-}
-
 .select-option {
   color: #7e858e;
   font-family: 'Roboto';
   font-size: 14px;
-  border-radius: 4px;
 }
-
-@media screen and (max-width: 767px) {
-  .Restaurants-header {
-    justify-content: flex-start;
-    padding-left: 15px;
-    margin-top: 10px;
+.sort-by-select {
+  color: #64748b;
+  background-color: #ffffff;
+  border: none;
+  padding: 12px;
+  outline: none;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  cursor: pointer;
+}
+@media screen and (max-width: 992px) {
+  .main-head {
+    font-size: 15px;
+    line-height: 8px;
+  }
+  .paragraph-container {
+    flex-direction: column;
+    font-size: 10px;
+  }
+  .paragraph-two-main {
+    font-size: 10px;
+  }
+  .name-and-filter {
+    margin-right: 39%;
   }
 }

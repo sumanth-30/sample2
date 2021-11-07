@@ -1,40 +1,47 @@
-import {BsFilterLeft} from 'react-icons/bs'
+import {BsFilterRight} from 'react-icons/bs'
+
 import './index.css'
 
-const RestaurantsHeader = props => {
-  const {sortByOptions, activeOptionId, updateActiveOptionId} = props
-  const onChangeSortBy = event => {
+const Restaurant = props => {
+  const onChangeSortby = event => {
+    const {updateActiveOptionId} = props
     updateActiveOptionId(event.target.value)
   }
-  return (
-    <div className="Restaurants-header">
-      <div className="text-container">
-        <h1 className="Restaurants-list-heading">Popular Restaurants</h1>
-        <p className="Restaurants-list-description">
-          Select Your favourite restaurent special dish and make your day
-          Happy...
-        </p>
-      </div>
 
-      <div className="sort-by-container">
-        <BsFilterLeft className="sort-by-icon" />
-        <select
-          className="sort-by-select"
-          value={activeOptionId}
-          onChange={onChangeSortBy}
-        >
-          {sortByOptions.map(eachOption => (
-            <option
-              key={eachOption.optionId}
-              value={eachOption.optionId}
-              className="select-option"
+  const {sortByOptions, activeOptionId} = props
+  return (
+    <>
+      <div className="main-container">
+        <h1 className="main-head">Popular Restaurants</h1>
+        <div className="paragraph-container">
+          <p className="paragraph-two-main">
+            Select Your favourite restaurent special dish and make your day
+            happy..
+          </p>
+          <div className="name-and-filter">
+            <BsFilterRight />
+            <p className="small-para">Sort By</p>
+            <select
+              className="sort-by-select"
+              value={activeOptionId}
+              onChange={onChangeSortby}
             >
-              {eachOption.displayText}
-            </option>
-          ))}
-        </select>
+              {sortByOptions.map(eachOption => (
+                <option
+                  key={eachOption.optionId}
+                  value={eachOption.displayText}
+                  className="select-option"
+                >
+                  {eachOption.displayText}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <hr />
       </div>
-    </div>
+    </>
   )
 }
-export default RestaurantsHeader
+
+export default Restaurant
