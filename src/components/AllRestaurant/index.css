@@ -45,6 +45,14 @@
   cursor: pointer;
 }
 
+.loader {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 /*  Restaurant Item */
 .Restaurant-item-container {
   display: flex;

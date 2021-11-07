@@ -15,8 +15,8 @@ const Restaurant = props => {
         <h1 className="main-head">Popular Restaurants</h1>
         <div className="paragraph-container">
           <p className="paragraph-two-main">
-            Select Your favourite restaurent special dish and make your day
-            happy..
+            Select Your favourite restaurant special dish and make your day
+            happy...
           </p>
           <div className="name-and-filter">
             <BsFilterRight />

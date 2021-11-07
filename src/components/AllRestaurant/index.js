@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
 import {FaStar, FaChevronLeft, FaChevronRight} from 'react-icons/fa'
 
@@ -9,12 +10,12 @@ import './index.css'
 
 const sortByOptions = [
   {
-    optionId: 'high',
-    displayText: 'Highest',
-  },
-  {
     optionId: 'low',
     displayText: 'Lowest',
+  },
+  {
+    optionId: 'high',
+    displayText: 'Highest',
   },
 ]
 
@@ -24,6 +25,7 @@ class AllRestaurant extends Component {
     activePage: 1,
     limit: 9,
     activeOptionId: sortByOptions[0].optionId,
+    isLoading: false,
   }
 
   componentDidMount() {
@@ -32,7 +34,9 @@ class AllRestaurant extends Component {
 
   getRestaurantsList = async () => {
     const {activePage, limit, activeOptionId} = this.state
-    // console.log(activeOptionId)
+
+    this.setState({isLoading: true})
+
     const jwtToken = Cookies.get('jwt_token')
     const apiUrl = `https://apis.ccbp.in/restaurants-list?offset=${
       (activePage - 1) * limit
@@ -57,6 +61,7 @@ class AllRestaurant extends Component {
       }))
       this.setState({
         restaurantsList: updatedData,
+        isLoading: false,
       })
     }
   }
@@ -103,7 +108,11 @@ class AllRestaurant extends Component {
           activeOptionId={activeOptionId}
           updateActiveOptionId={this.updateActiveOptionId}
         />
-        <div className="Restaurants-container" key={restaurantsList.id}>
+        <div
+          testid="restaurant-item"
+          className="Restaurants-container"
+          key={restaurantsList.id}
+        >
           <div className="Restaurants-items-container">
             {restaurantsList.map(item => (
               <Link
@@ -136,13 +145,15 @@ class AllRestaurant extends Component {
           </div>
           <div className="pagination-container">
             <FaChevronLeft
+              testid="pagination-left-button"
               className="page-left-icon"
               onClick={this.onClickLeftPage}
             />
-            <p className="page-count-numbers">
+            <p testid="active-page-number" className="page-count-numbers">
               <span>{activePage}</span> to <span>4</span>
             </p>
             <FaChevronRight
+              testid="pagination-right-button"
               className="page-right-icon"
               onClick={this.onClickRightPage}
             />
@@ -152,8 +163,15 @@ class AllRestaurant extends Component {
     )
   }
 
+  renderLoader = () => (
+    <div testid="restaurants-list-loader" className="loader">
+      <Loader type="Circles" color="#F7931E" height="50" width="50" />
+    </div>
+  )
+
   render() {
-    return <div>{this.renderRestaurantsList()}</div>
+    const {isLoading} = this.state
+    return <>{isLoading ? this.renderLoader() : this.renderRestaurantsList()}</>
   }
 }
 

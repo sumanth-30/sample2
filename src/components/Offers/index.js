@@ -63,7 +63,7 @@ class Offers extends Component {
   renderFailureView = () => <h1>No Offers</h1>
 
   renderLoadingView = () => (
-    <div className="carousal">
+    <div testid="restaurants-offers-loader" className="carousal">
       <Loader type="Circles" color="#f7931e" height="50" width="50" />
     </div>
   )
